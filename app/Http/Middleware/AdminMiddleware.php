@@ -16,13 +16,19 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()){
-           
-            if(Auth::user()->role == 'admin'){
-                return $next($request);
+        if(Auth::check())
+        
+        {
+            /** @var App\Models\User */
+
+            $user = Auth::user();
+            
+            if($user->hasRole(['super-admin','admin'])){
+                return $next($request);  
             }
-            abort(403);
+                abort(403, 'user does not have currect role');
         }
+        
         abort(401);
         
     }

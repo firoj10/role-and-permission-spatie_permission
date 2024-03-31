@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => ['isAdmin']], function(){
+// Route::group(['middleware' => ['role:super-admin|admin']], function(){
 
 
 
@@ -38,9 +39,9 @@ Route::get('users/{usersId}/delete',[App\Http\Controllers\UserController::class,
 
 
 
-// Route::get('/', function () {
-//     return view('frontend.index');
-// });
+Route::get('/', function () {
+    return view('frontend.index');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

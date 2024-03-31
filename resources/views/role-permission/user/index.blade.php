@@ -42,10 +42,12 @@
                                        @endif
                                     </td>
                                     <td>
-                                    
+                                        @can('delete user')
                                         <a href="{{url('users/'.$user->id.'/edit')}}" class="btn btn-success">Edit</a>
+                                        @endcan
+                                        @can('delete user')
                                         <a href="{{url('users/'.$user->id.'/delete')}}" class="btn btn-success">Delete</a>
-                                       
+                                        @endcan
                                     </td>
                                
                                   </tr>
