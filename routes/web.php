@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['middleware' => 'auth'], function(){
+
+
+
 Route::resource('permissions',App\Http\Controllers\PermissionController::class);
 Route::get('permissions/{permissionId}/delete',[App\Http\Controllers\PermissionController::class, 'destroy']);
 
@@ -26,17 +30,17 @@ Route::put('roles/{roleId}/give-permissions',[App\Http\Controllers\RoleControlle
 Route::resource('users',App\Http\Controllers\UserController::class);
 Route::get('users/{usersId}/delete',[App\Http\Controllers\UserController::class, 'destroy']);
 
-
-
-
-
-
-
-
-
-Route::get('/', function () {
-    return view('frontend.index');
 });
+
+
+
+
+
+
+
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
